@@ -27,7 +27,7 @@ RSpec.describe Storage do
   end
 
   describe '#win' do
-    before { stub_const('StatisticController::STORAGE_FILE', 'statistics.yml') }
+    before { stub_const('Statistic::STORAGE_FILE', 'spec/fixtures/test_statistics.yml') }
 
     it 'redirects to win page when game is won' do
       allow(current_game).to receive(:won?).and_return(true)
