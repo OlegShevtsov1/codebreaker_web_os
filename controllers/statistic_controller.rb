@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-  class StatisticController
-    include Helpers::Renderer
-    STORAGE_FILE = 'statistics.yml'
+class StatisticController
+  include Helpers::Renderer
+  STORAGE_FILE = 'statistics.yml'
 
-    NO_RESULTS = 'There are no winners yet! Be the first!'
+  NO_RESULTS = 'There are no winners yet! Be the first!'
 
-    def show_stats
-      storage = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
-      winners = YAML.load_file(storage.storage_file)[:winners]
-      @stats = CodebreakerOs::Statistic.sorted_winners(winners)
+  def show_stats
+    storage = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
+    winners = YAML.load_file(storage.storage_file)[:winners]
+    @stats = CodebreakerOs::Statistic.sorted_winners(winners)
 
-      statistics_page
-    end
+    statistics_page
   end
+end

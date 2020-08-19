@@ -5,9 +5,9 @@ class Router
   include Helpers::RouteHelper
 
   def initialize
-    @pathes = {'/': method(:home), '/rules': method(:rules), '/statistics': method(:statistics),
-               '/game': method(:game), '/take_hint': method(:take_hint),
-               '/submit_answer': method(:submit_answer), '/lose': method(:lose), '/win': method(:win)}
+    @pathes = { '/': method(:home), '/rules': method(:rules), '/statistics': method(:statistics),
+                '/game': method(:game), '/take_hint': method(:take_hint),
+                '/submit_answer': method(:submit_answer), '/lose': method(:lose), '/win': method(:win) }
     @registrator = GameRegistrator.new
     @game_adapter = GameAdapter.new
     @game_finisher = GameFinisher.new

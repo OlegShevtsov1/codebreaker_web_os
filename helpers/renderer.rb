@@ -13,7 +13,6 @@ module Helpers
       Rack::Response.new(render('menu.html.haml')).finish
     end
 
-
     def wrong_path
       Rack::Response.new(render('not_found.html.haml'), 404).finish
     end
@@ -25,7 +24,6 @@ module Helpers
     def statistics_page
       Rack::Response.new(render('statistics.html.haml')).finish
     end
-
 
     def lose_page
       Rack::Response.new(render('lose.html.haml')).finish
