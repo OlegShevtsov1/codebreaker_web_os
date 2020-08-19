@@ -1,0 +1,16 @@
+---
+:winners:
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: Oleg
+    created_at: !ruby/object:DateTime 2020-08-19 22:08:55.190083805 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '5163'
+  hints:
+  - '1'
+  hints_used: 0
+  attempts_used: 1
