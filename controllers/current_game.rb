@@ -1,15 +1,14 @@
 # frozen_string_literal: true
 
-class GameAdapter
-  include Helpers::Renderer
+class CurrentGame
   include Helpers::RouteHelper
 
-  attr_reader :finished_game
+  attr_reader :game_over
 
   def reset_game_state
     @lose_state = false
     @win_state = false
-    @finished_game = nil
+    @game_over = nil
   end
 
   def won?
@@ -51,14 +50,14 @@ class GameAdapter
   private
 
   def lose_the_game(request)
-    @finished_game = request.session[:game]
+    @game_over = request.session[:game]
     reset_game_session(request)
     @lose_state = true
     redirect_to_lose_page
   end
 
   def win_the_game(request)
-    @finished_game = request.session[:game]
+    @game_over = request.session[:game]
     reset_game_session(request)
     @win_state = true
     redirect_to_win_page

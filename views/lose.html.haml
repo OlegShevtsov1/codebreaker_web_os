@@ -22,24 +22,24 @@
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   Level:
                   %span.badge.badge-light
-                    = @finished_game.difficulty[:name].capitalize
+                    = @game_over.difficulty[:name].capitalize
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   Attempts Left:
                   %span.badge.badge-light
-                    = (@finished_game.difficulty[:attempts].to_i - @finished_game.attempts_used)
+                    = (@game_over.difficulty[:attempts].to_i - @game_over.attempts_used)
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   Hints Left:
                   %span.badge.badge-light
-                    = (@finished_game.difficulty[:hints].to_i - @finished_game.hints_used)
+                    = (@game_over.difficulty[:hints].to_i - @game_over.hints_used)
             %hr.mb-4/
             .row
               .text-center
                 .text-center
                   %h3.text-white
-                    Oops, #{@finished_game.player.name.upcase}! You lose the game!
+                    Oops, #{@game_over.player.name.upcase}! You lose the game!
                   %h4.text-white
                     The code was
-                    %strong= @finished_game.secret_number
+                    %strong= @game_over.secret_number
                 %img.img-fluid{alt: "You lose the game!", src: "assets/images/lost.gif"}/
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}

@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class Router
-  include Helpers::Renderer
   include Helpers::RouteHelper
 
   def initialize
     @pathes = { '/': method(:home), '/rules': method(:rules), '/statistics': method(:statistics),
                 '/game': method(:game), '/take_hint': method(:take_hint),
                 '/submit_answer': method(:submit_answer), '/lose': method(:lose), '/win': method(:win) }
-    @registrator = GameRegistrator.new
-    @game_adapter = GameAdapter.new
-    @game_finisher = GameFinisher.new
-    @statistic_controller = StatisticController.new
+    @register_game = RegisterGame.new
+    @current_game = CurrentGame.new
+    @storage = Storage.new
+    @statistic = Statistic.new
   end
 
   def call(env)
@@ -35,14 +34,14 @@ class Router
     @request.session.clear
     return back_to_active_game if active_game?
 
-    @game_adapter.reset_game_state
+    @current_game.reset_game_state
     home_page
   end
 
   def statistics
     return back_to_active_game if active_game?
 
-    @statistic_controller.show_stats
+    @statistic.show_stats
   end
 
   def active_game?
@@ -52,8 +51,8 @@ class Router
   def game
     return back_home if @request.get? && !active_game?
 
-    @request.session[:game] ||= @registrator.create_game(@request)
-    @game_adapter.play(@request)
+    @request.session[:game] ||= @register_game.create_game(@request)
+    @current_game.play(@request)
   rescue StandardError => e
     @registrate_error = [] << e.message
     back_home
@@ -61,7 +60,7 @@ class Router
 
   def take_hint
     if active_game?
-      @game_adapter.take_hint(@request)
+      @current_game.take_hint(@request)
       back_to_active_game
     else
       back_home
@@ -73,18 +72,18 @@ class Router
   def submit_answer
     return back_home unless active_game?
 
-    @game_adapter.check_input(@request)
+    @current_game.check_input(@request)
   end
 
   def win
     return back_to_active_game if active_game?
 
-    @game_finisher.win(@game_adapter)
+    @storage.win(@current_game)
   end
 
   def lose
     return back_to_active_game if active_game?
 
-    @game_finisher.lose(@game_adapter)
+    @storage.lose(@current_game)
   end
 end

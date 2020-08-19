@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GameRegistrator
+class RegisterGame
   def create_game(request)
     player = CodebreakerOs::Player.new(request.params['player_name'])
     raise StandardError, "Name #{request.params['player_name']} isn't valid" unless player.valid?

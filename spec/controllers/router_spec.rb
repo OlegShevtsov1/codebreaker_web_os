@@ -2,10 +2,10 @@
 
 RSpec.describe Router do
   include Rack::Test::Methods
-  include Helpers::Renderer
+  include Helpers::RouteHelper
   let(:router) { described_class.new }
   let(:game) { CodebreakerOs::Game.new(CodebreakerOs::Player.new('User'), 'hell') }
-  let(:game_adapter) { app.instance_variable_get(:@game_adapter) }
+  let(:current_game) { app.instance_variable_get(:@current_game) }
   let(:pathes) { %w[/ /rules /lose /win /statistics /take_hint] }
 
   def app
@@ -102,7 +102,7 @@ RSpec.describe Router do
 
     it 'redirects to /game' do
       pathes.each do |path|
-        allow(app.instance_variable_get(:@game_adapter)).to receive(:take_hint)
+        allow(app.instance_variable_get(:@current_game)).to receive(:take_hint)
         get path
         expect(last_response.header['Location']).to eq('/game')
       end

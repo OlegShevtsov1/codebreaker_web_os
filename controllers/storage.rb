@@ -1,26 +1,25 @@
 # frozen_string_literal: true
 
-class GameFinisher
+class Storage
   STORAGE_FILE = 'statistics.yml'
-  include Helpers::Renderer
   include Helpers::RouteHelper
 
-  def win(game_adapter)
-    @finished_game = game_adapter.finished_game
-    if @finished_game
+  def win(current_game)
+    @game_over = current_game.game_over
+    if @game_over
       @storage_wrapper = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
       @yml_store = @storage_wrapper.new_store
       save_storage unless @storage_wrapper.storage_exists?
       synchronize_storage
-      @winners << @finished_game
+      @winners << @game_over
       save_storage
     end
-    game_adapter.won? ? win_page : back_home
+    current_game.won? ? win_page : back_home
   end
 
-  def lose(game_adapter)
-    @finished_game = game_adapter.finished_game
-    game_adapter.lost? ? lose_page : back_home
+  def lose(current_game)
+    @game_over = current_game.game_over
+    current_game.lost? ? lose_page : back_home
   end
 
   def save_storage

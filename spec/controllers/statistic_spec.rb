@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe StatisticController do
+RSpec.describe Statistic do
   let(:statistic) { described_class.new }
 
   describe '#show_stats' do
