@@ -1,0 +1,68 @@
+!!!
+%html.mdl-js{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %link{href: "assets/favicon.ico", rel: "icon"}/
+    %link{href: "assets/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "assets/css/styles.css", rel: "stylesheet"}/
+    %script{src: "assets/js/jquery.min.js"}
+    %script{src: "assets/js/bootstrap.min.js"}
+    %title Codebreaker Web
+  %body
+    %section#introduction
+      .container
+        .row.fill-viewport.align-items-center.justify-content-center
+          .col-12.col-md-6
+            .row
+              .col-md-auto
+                %h1.text-white.title Codebreaker 2020
+            %p.lead.text-white-70
+              Hello, #{@game.player.name}.
+              -#Try to guess #{Codebreaker::Validator::SECRET_CODE_SIZE}-digit number, that consists of numbers in a range from 1 to 6.
+            %hr.mb-4/
+            .row
+              .col.button
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  Level:
+                  %span.badge.badge-light
+                    = @game.difficulty[:name].to_s.capitalize
+              .col.text-center.button
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  Attempts:
+                  %span.badge.badge-light= @game.difficulty[:attempts]
+              .col.button
+                %button.btn.btn-primary.float-right{disabled: "disabled", type: "button"}
+                  Hints:
+                  %span.badge.badge-light= @game.difficulty[:hints]
+            %hr.mb-4/
+            %label.lead.label= error
+            %form{action: "/submit_answer", method: "post"}
+              .form-group
+                %input.form-control.guess_input{autocomplete: "off", name: "number", placeholder: "1234", required: ""}/
+              .form-group.guess_markers_list
+                #guess_marker
+                  - if @user_code
+                    - @user_code.split('').each do |item|
+                      - if item == '+'
+                        %button.btn.btn-success.marks{disabled: "disabled", type: "button"}
+                          = item
+                      - if item == '-'
+                        %button.btn.btn-primary.marks{disabled: "disabled", type: "button"}
+                          = item
+                    - ( 4 - @user_code.length).times do
+                      %button.btn.btn-danger.marks{disabled: "disabled", type: "button"} x
+              %hr.mb-4/
+              %button.btn.btn-primary.btn-lg{type: "submit"}
+                Submit
+              - unless @game.hints_available?
+                %button.btn.btn-warning.btn-lg.float-right{disabled: "disabled", role: "button"}
+                  Show hint!
+                  %span.badge.badge-light
+                    = @hints.join(' ')
+              - else
+                %a.btn.btn-warning.btn-lg.float-right{href: "/take_hint", role: "button"}
+                  Show hint!
+                  - if @hints.any?
+                    %span.badge.badge-light
+                      = @hints.join(' ')

@@ -1,0 +1,115 @@
+---
+:winners:
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: qwerty
+    created_at: !ruby/object:DateTime 2020-08-19 18:33:45.486536483 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '2263'
+  hints:
+  - '2'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: qwerty
+    created_at: !ruby/object:DateTime 2020-08-19 19:23:48.380599348 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '2661'
+  hints:
+  - '1'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: qwerty
+    created_at: !ruby/object:DateTime 2020-08-19 19:40:55.178625718 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '3634'
+  hints:
+  - '3'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: medium1
+    created_at: !ruby/object:DateTime 2020-08-19 19:44:49.447971295 +03:00
+    errors: []
+  difficulty:
+    :name: :medium
+    :attempts: 10
+    :hints: 1
+  secret_number: '3325'
+  hints:
+  - '3'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: '111'
+    created_at: !ruby/object:DateTime 2020-08-19 19:46:21.246567176 +03:00
+    errors: []
+  difficulty:
+    :name: :medium
+    :attempts: 10
+    :hints: 1
+  secret_number: '6225'
+  hints:
+  - '2'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: '1'
+    created_at: !ruby/object:DateTime 2020-08-19 19:47:06.555227567 +03:00
+    errors: []
+  difficulty:
+    :name: :easy
+    :attempts: 15
+    :hints: 2
+  secret_number: '5514'
+  hints:
+  - '5'
+  - '4'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: qwerty
+    created_at: !ruby/object:DateTime 2020-08-19 19:57:11.201254948 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '6266'
+  hints:
+  - '6'
+  hints_used: 0
+  attempts_used: 1
+- !ruby/object:CodebreakerOs::Game
+  player: !ruby/object:CodebreakerOs::Player
+    name: '12'
+    created_at: !ruby/object:DateTime 2020-08-19 20:12:42.608959185 +03:00
+    errors: []
+  difficulty:
+    :name: :hell
+    :attempts: 5
+    :hints: 1
+  secret_number: '5343'
+  hints:
+  - '3'
+  hints_used: 0
+  attempts_used: 1
