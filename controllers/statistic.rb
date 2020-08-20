@@ -7,8 +7,7 @@ class Statistic
   NO_RESULTS = 'There are no winners yet! Be the first!'
 
   def show_stats
-    storage = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
-    winners = YAML.load_file(storage.storage_file)[:winners]
+    winners = YAML.load_file(STORAGE_FILE)[:winners]
     @stats = CodebreakerOs::Statistic.sorted_winners(winners)
 
     statistics_page

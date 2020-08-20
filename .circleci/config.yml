@@ -36,6 +36,7 @@ commands:
           name: run specs
           command: |
             bundle exec rspec --format progress \
+                              --format RspecJunitFormatter \
                               --out /tmp/test-results/rspec/rspec.xml
           when: always
       - store_test_results:

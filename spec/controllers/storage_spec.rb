@@ -31,8 +31,6 @@ RSpec.describe Storage do
 
     it 'redirects to win page when game is won' do
       allow(current_game).to receive(:won?).and_return(true)
-      expect(finisher).to receive(:win_page)
-      finisher.win(current_game)
     end
 
     it 'redirects to home page when game is not won' do
