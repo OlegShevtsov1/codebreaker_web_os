@@ -31,7 +31,5 @@
               %button.btn.btn-primary.btn-lg{type: "submit"}
                 = I18n.t(:start_the_game_button)
               %span.float-right
-                %a.btn.btn-warning.btn-lg{href: "/rules", role: "button"}= I18n.t(:rules_button)
-                %a.btn.btn-success.btn-lg{href: "/statistics", role: "button"}= I18n.t(:statistics_button)
                 %a.btn.btn-warning.btn-lg{href: Router::PATH[:rules], role: "button"}= I18n.t(:rules_button)
                 %a.btn.btn-success.btn-lg{href: Router::PATH[:statistics], role: "button"}= I18n.t(:statistics_button)
