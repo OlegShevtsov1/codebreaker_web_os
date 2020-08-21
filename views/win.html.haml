@@ -9,19 +9,20 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title.inline-block Codebreaker 2020
+                %h1.text-white.title.inline-block
+                  = I18n.t(:page_title)
             .row
               .col.button
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Level:
+                  = I18n.t(:level_label)
                   %span.badge.badge-light
                     = @game_over.difficulty[:name].capitalize
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Attempts Left:
+                  = I18n.t(:attempts_left)
                   %span.badge.badge-light
                     = (@game_over.difficulty[:attempts].to_i - @game_over.attempts_used)
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Hints Left:
+                  = I18n.t(:hints_left)
                   %span.badge.badge-light
                     = (@game_over.difficulty[:hints].to_i - @game_over.hints_used)
             %hr.mb-4/
@@ -29,10 +30,10 @@
               .text-center
                 .text-center
                   %h3.text-white
-                    Congratulations, #{@game_over.player.name.upcase}! You won the game!
-                %img.img-fluid{alt: "You won the game!", src: "assets/images/won.gif"}/
+                    = I18n.t(:win_message, name: @game_over.player.name.upcase)
+                %img.img-fluid{alt: I18n.t(:alt_win), src: "assets/images/won.gif"}/
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
-              Back Home
+              = I18n.t(:back_home_button)
             %a.btn.btn-success.btn-lg.float-right{href: "/statistics", role: "button"}
-              Statistics
+              = I18n.t(:statistics_button)

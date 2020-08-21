@@ -9,12 +9,13 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title Codebreaker 2020
+                %h1.text-white.title
+                  = I18n.t(:page_title)
             %p.lead.text-white-70
-              NOT FOUND
+              = I18n.t(:not_found_message)
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
               - if active_game?
-                Back to the GAME
+                = I18n.t(:back_to_the_game_button)
               - else
-                Back Home
+                = I18n.t(:back_home_button)

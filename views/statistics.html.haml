@@ -9,19 +9,21 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title Codebreaker 2020
-            %p.lead.text-white-70 Top of Players:
+                %h1.text-white.title
+                  = I18n.t(:page_title)
+            %p.lead.text-white-70
+              = I18n.t(:top_of_players)
             %hr.mb-4/
             .table-responsive-md.scores
               %table.table.table-striped.table.table-sm
                 %thead
                 %tr
-                  %th{scope: "col"} #
-                  %th{scope: "col"} Name
-                  %th{scope: "col"} Level
-                  %th{scope: "col"} Attempts Left
-                  %th{scope: "col"} Hints Left
-                  %th{scope: "col"} Date
+                  %th{scope: "col"}= I18n.t(:stat_number)
+                  %th{scope: "col"}= I18n.t(:stat_name)
+                  %th{scope: "col"}= I18n.t(:stat_level)
+                  %th{scope: "col"}= I18n.t(:stat_attempts_left)
+                  %th{scope: "col"}= I18n.t(:stat_hints_left)
+                  %th{scope: "col"}= I18n.t(:stat_date)
                 %tbody
                   - if @stats
                     - @stats.each_with_index do |stat, index|
@@ -38,4 +40,4 @@
                         %td= stat.player.created_at.strftime('%d-%m-%Y')
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
-              Home
+              = I18n.t(:back_home_button)

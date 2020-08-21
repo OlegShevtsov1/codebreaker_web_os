@@ -9,19 +9,20 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title.inline-block Codebreaker 2020
+                %h1.text-white.title.inline-block
+                  = I18n.t(:page_title)
             .row
               .col.button
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Level:
+                  = I18n.t(:level_label)
                   %span.badge.badge-light
                     = @game_over.difficulty[:name].capitalize
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Attempts Left:
+                  = I18n.t(:attempts_left)
                   %span.badge.badge-light
                     = (@game_over.difficulty[:attempts].to_i - @game_over.attempts_used)
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Hints Left:
+                  = I18n.t(:hints_left)
                   %span.badge.badge-light
                     = (@game_over.difficulty[:hints].to_i - @game_over.hints_used)
             %hr.mb-4/
@@ -29,11 +30,11 @@
               .text-center
                 .text-center
                   %h3.text-white
-                    Oops, #{@game_over.player.name.upcase}! You lose the game!
+                    = I18n.t(:lose_message, name: @game_over.player.name.upcase)
                   %h4.text-white
-                    The code was
+                    = I18n.t(:secret_code)
                     %strong= @game_over.secret_number
-                %img.img-fluid{alt: "You lose the game!", src: "assets/images/lost.gif"}/
+                %img.img-fluid{alt: I18n.t(:alt_lose), src: "assets/images/lost.gif"}/
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
               Back Home

@@ -72,8 +72,12 @@ RSpec.describe CurrentGame do
   end
 
   describe '#play' do
-    it 'returns game_page' do
+    before do
       get '/game'
+      get '/take_hint'
+    end
+
+    it 'returns game_page' do
       last_request.env['rack.session'] = { game: game }
       @game = game
       @hints = []
@@ -90,8 +94,9 @@ RSpec.describe CurrentGame do
   end
 
   describe '#take_hint' do
+    before { get '/take_hint' }
+
     it 'returns array' do
-      get '/take_hint'
       last_request.env['rack.session'] = { game: game }
       expect(current_game.take_hint(last_request).class).to eq(Array)
     end
@@ -99,8 +104,9 @@ RSpec.describe CurrentGame do
 
   describe '#check_input' do
     context 'when input is invalid' do
+      before { get '/submit_answer' }
+
       it 'returns to active game' do
-        get '/submit_answer'
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '11111')
         expect(current_game).to receive(:back_to_active_game)
@@ -108,7 +114,6 @@ RSpec.describe CurrentGame do
       end
 
       it 'doesnt change game attempts' do
-        get '/submit_answer'
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '11111')
         expect { current_game.check_input(last_request) }.not_to change(last_request.session[:game], :attempts_used)
@@ -116,8 +121,9 @@ RSpec.describe CurrentGame do
     end
 
     context 'when input is valid' do
+      before { get '/submit_answer' }
+
       it 'returns to active game' do
-        get '/submit_answer'
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '1111')
         expect(current_game).to receive(:back_to_active_game)
@@ -125,7 +131,6 @@ RSpec.describe CurrentGame do
       end
 
       it 'sets String to session[:user_code]' do
-        get '/submit_answer'
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '1111')
         current_game.check_input(last_request)
@@ -133,7 +138,6 @@ RSpec.describe CurrentGame do
       end
 
       it 'wins the game when input is equal to secret_code' do
-        get '/submit_answer'
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, game.secret_number.to_s)
         expect(current_game).to receive(:redirect_to_win_page)

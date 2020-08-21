@@ -54,37 +54,37 @@ RSpec.describe Router do
     end
 
     context 'when /submit_answer' do
+      before { get '/submit_answer' }
+
       it 'redirects' do
-        get '/submit_answer'
         expect(last_response).to be_redirect
       end
 
       it 'redirects to /' do
-        get '/submit_answer'
         expect(last_response.header['Location']).to eq('/')
       end
     end
 
     context 'when url is unknown' do
+      before { get '/unknown' }
+
       it 'render not found page' do
-        get '/unknown'
         expect(last_response.body).to include('NOT FOUND')
       end
 
       it 'returns 404 status' do
-        get '/unknown'
         expect(last_response.status).to eq(404)
       end
     end
 
     context 'when /game' do
+      before { get '/game' }
+
       it 'redirects' do
-        get '/game'
         expect(last_response).to be_redirect
       end
 
       it 'redirects to /' do
-        get '/game'
         expect(last_response.header['Location']).to eq('/')
       end
     end
