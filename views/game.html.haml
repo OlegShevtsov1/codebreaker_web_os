@@ -30,7 +30,7 @@
                   %span.badge.badge-light= @game.difficulty[:hints]
             %hr.mb-4/
             %label.lead.label= error
-            %form{action: "/submit_answer", method: "post"}
+            %form{action: Router::PATH[:submit_answer], method: "post"}
               .form-group
                 %input.form-control.guess_input{autocomplete: "off", name: "number", placeholder:  I18n.t(:number_placeholder), required: ""}/
               .form-group.guess_markers_list
@@ -54,7 +54,7 @@
                   %span.badge.badge-light
                     = @hints.join(' ')
               - else
-                %a.btn.btn-warning.btn-lg.float-right{href: "/take_hint", role: "button"}
+                %a.btn.btn-warning.btn-lg.float-right{href: Router::PATH[:take_hint], role: "button"}
                   = I18n.t(:show_hint_button)
                   - if @hints.any?
                     %span.badge.badge-light

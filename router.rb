@@ -2,11 +2,16 @@
 
 class Router
   include Helpers::RouteHelper
+  PATH = { home: '/',
+           game: '/game',
+           rules: '/rules',
+           statistics: '/statistics',
+           take_hint: '/take_hint',
+           submit_answer: '/submit_answer',
+           lose: '/lose',
+           win: '/win' }.freeze
 
   def initialize
-    @pathes = { '/': method(:home), '/rules': method(:rules), '/statistics': method(:statistics),
-                '/game': method(:game), '/take_hint': method(:take_hint),
-                '/submit_answer': method(:submit_answer), '/lose': method(:lose), '/win': method(:win) }
     @register_game = RegisterGame.new
     @current_game = CurrentGame.new
     @storage = Storage.new
@@ -15,7 +20,7 @@ class Router
 
   def call(env)
     @request = Rack::Request.new(env)
-    @pathes.key?(@request.path.to_sym) ? @pathes[@request.path.to_sym].call : wrong_path
+    PATH.value?(@request.path) ? method(PATH.key(@request.path)).call : wrong_path
   end
 
   def error

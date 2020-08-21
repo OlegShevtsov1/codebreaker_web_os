@@ -17,51 +17,51 @@ RSpec.describe Router do
   end
 
   context 'when no active game' do
-    context 'when /' do
+    before { get Router::PATH[:home] }
+
+    context "when #{Router::PATH[:home]}" do
       it 'renders home page' do
-        get '/'
         expect(last_response.header).to eq(home_page[1])
       end
 
       it 'returns ok status' do
-        get '/'
         expect(last_response).to be_ok
       end
     end
 
-    context 'when /rules' do
+    context "when #{Router::PATH[:rules]}" do
+      before { get Router::PATH[:rules] }
+
       it 'renders rules page' do
-        get '/rules'
         expect(last_response.header).to eq(rules_page[1])
       end
 
       it 'returns ok status' do
-        get '/'
         expect(last_response).to be_ok
       end
     end
 
-    context 'when /take_hint' do
+    context "when #{Router::PATH[:take_hint]}" do
+      before { get Router::PATH[:take_hint] }
+
       it 'redirects' do
-        get '/take_hint'
         expect(last_response).to be_redirect
       end
 
-      it 'redirects to /' do
-        get '/take_hint'
-        expect(last_response.header['Location']).to eq('/')
+      it "redirects to #{Router::PATH[:home]}" do
+        expect(last_response.header['Location']).to eq(Router::PATH[:home])
       end
     end
 
-    context 'when /submit_answer' do
-      before { get '/submit_answer' }
+    context "when #{Router::PATH[:submit_answer]}" do
+      before { get Router::PATH[:submit_answer] }
 
       it 'redirects' do
         expect(last_response).to be_redirect
       end
 
-      it 'redirects to /' do
-        expect(last_response.header['Location']).to eq('/')
+      it "redirects to #{Router::PATH[:home]}" do
+        expect(last_response.header['Location']).to eq(Router::PATH[:home])
       end
     end
 
@@ -77,15 +77,15 @@ RSpec.describe Router do
       end
     end
 
-    context 'when /game' do
-      before { get '/game' }
+    context "when #{Router::PATH[:game]}" do
+      before { get Router::PATH[:game] }
 
       it 'redirects' do
         expect(last_response).to be_redirect
       end
 
-      it 'redirects to /' do
-        expect(last_response.header['Location']).to eq('/')
+      it "redirects to #{Router::PATH[:home]}" do
+        expect(last_response.header['Location']).to eq(Router::PATH[:home])
       end
     end
   end
@@ -100,11 +100,14 @@ RSpec.describe Router do
       end
     end
 
-    it 'redirects to /game' do
-      pathes.each do |path|
-        allow(app.instance_variable_get(:@current_game)).to receive(:take_hint)
-        get path
-        expect(last_response.header['Location']).to eq('/game')
+    context 'when redirects to game' do
+      before { allow(app.instance_variable_get(:@current_game)).to receive(:take_hint) }
+
+      it "redirects to #{Router::PATH[:game]}" do
+        pathes.each do |path|
+          get path
+          expect(last_response.header['Location']).to eq(Router::PATH[:game])
+        end
       end
     end
   end

@@ -33,7 +33,7 @@
                     = I18n.t(:win_message, name: @game_over.player.name.upcase)
                 %img.img-fluid{alt: I18n.t(:alt_win), src: "assets/images/won.gif"}/
             %hr.mb-4/
-            %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
+            %a.btn.btn-primary.btn-lg{href: Router::PATH[:home], role: "button"}
               = I18n.t(:back_home_button)
-            %a.btn.btn-success.btn-lg.float-right{href: "/statistics", role: "button"}
+            %a.btn.btn-success.btn-lg.float-right{href: Router::PATH[:statistics], role: "button"}
               = I18n.t(:statistics_button)
