@@ -30,21 +30,21 @@ class Router
   private
 
   def rules
-    return back_to_active_game if active_game?
+    return redirect_to(PATH[:game]) if active_game?
 
     rules_page
   end
 
   def home
     @request.session.clear
-    return back_to_active_game if active_game?
+    return redirect_to(PATH[:game]) if active_game?
 
     @current_game.reset_game_state
     home_page
   end
 
   def statistics
-    return back_to_active_game if active_game?
+    return redirect_to(PATH[:game]) if active_game?
 
     @statistic.show_stats
   end
@@ -54,40 +54,40 @@ class Router
   end
 
   def game
-    return back_home if @request.get? && !active_game?
+    return redirect_to(PATH[:home]) if @request.get? && !active_game?
 
     @request.session[:game] ||= @register_game.create_game(@request)
     @current_game.play(@request)
   rescue StandardError => e
     @registrate_error = [] << e.message
-    back_home
+    redirect_to(PATH[:home])
   end
 
   def take_hint
     if active_game?
       @current_game.take_hint(@request)
-      back_to_active_game
+      redirect_to(PATH[:game])
     else
-      back_home
+      redirect_to(PATH[:home])
     end
   rescue StandardError => _e
-    back_to_active_game
+    redirect_to(PATH[:game])
   end
 
   def submit_answer
-    return back_home unless active_game?
+    return redirect_to(PATH[:home]) unless active_game?
 
     @current_game.check_input(@request)
   end
 
   def win
-    return back_to_active_game if active_game?
+    return redirect_to(PATH[:game]) if active_game?
 
     @storage.win(@current_game)
   end
 
   def lose
-    return back_to_active_game if active_game?
+    return redirect_to(PATH[:game]) if active_game?
 
     @storage.lose(@current_game)
   end

@@ -88,7 +88,7 @@ RSpec.describe CurrentGame do
       game.instance_variable_set(:@attempts_used, 15)
       get '/take_hint'
       last_request.env['rack.session'] = { game: game }
-      expect(current_game).to receive(:redirect_to_lose_page)
+      expect(current_game).to receive(:redirect_to).with(Router::PATH[:lose])
       current_game.play(last_request)
     end
   end
@@ -109,7 +109,7 @@ RSpec.describe CurrentGame do
       it 'returns to active game' do
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '11111')
-        expect(current_game).to receive(:back_to_active_game)
+        expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
         current_game.check_input(last_request)
       end
 
@@ -126,7 +126,7 @@ RSpec.describe CurrentGame do
       it 'returns to active game' do
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '1111')
-        expect(current_game).to receive(:back_to_active_game)
+        expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
         current_game.check_input(last_request)
       end
 
@@ -140,7 +140,7 @@ RSpec.describe CurrentGame do
       it 'wins the game when input is equal to secret_code' do
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, game.secret_number.to_s)
-        expect(current_game).to receive(:redirect_to_win_page)
+        expect(current_game).to receive(:redirect_to).with(Router::PATH[:win])
         current_game.check_input(last_request)
       end
     end

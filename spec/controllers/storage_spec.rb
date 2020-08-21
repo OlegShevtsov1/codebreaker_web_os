@@ -21,7 +21,7 @@ RSpec.describe Storage do
 
     it 'redirects to home_page when game is not lost' do
       allow(current_game).to receive(:lost?).and_return(false)
-      expect(finisher).to receive(:back_home)
+      expect(finisher).to receive(:redirect_to).with(Router::PATH[:home])
       finisher.lose(current_game)
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe Storage do
 
     it 'redirects to home page when game is not won' do
       allow(current_game).to receive(:won?).and_return(false)
-      expect(finisher).to receive(:back_home)
+      expect(finisher).to receive(:redirect_to).with(Router::PATH[:home])
       finisher.lose(current_game)
     end
   end

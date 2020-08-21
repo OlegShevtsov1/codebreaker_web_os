@@ -14,12 +14,12 @@ class Storage
       @winners << @game_over
       save_storage
     end
-    current_game.won? ? win_page : back_home
+    current_game.won? ? win_page : redirect_to(Router::PATH[:home])
   end
 
   def lose(current_game)
     @game_over = current_game.game_over
-    current_game.lost? ? lose_page : back_home
+    current_game.lost? ? lose_page : redirect_to(Router::PATH[:home])
   end
 
   def save_storage

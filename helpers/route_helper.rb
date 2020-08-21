@@ -5,47 +5,39 @@ module Helpers
     private
 
     def home_page
-      Rack::Response.new(render('menu.html.haml')).finish
+      render_page('menu.html.haml')
     end
 
     def wrong_path
-      Rack::Response.new(render('not_found.html.haml'), 404).finish
+      render_page('not_found.html.haml', 404)
     end
 
     def rules_page
-      Rack::Response.new(render('rules.html.haml')).finish
+      render_page('rules.html.haml')
     end
 
     def statistics_page
-      Rack::Response.new(render('statistics.html.haml')).finish
+      render_page('statistics.html.haml')
     end
 
     def lose_page
-      Rack::Response.new(render('lose.html.haml')).finish
+      render_page('lose.html.haml')
     end
 
     def win_page
-      Rack::Response.new(render('win.html.haml')).finish
+      render_page('win.html.haml')
     end
 
     def game_page
-      Rack::Response.new(render('game.html.haml')).finish
+      render_page('game.html.haml')
     end
 
-    def back_to_active_game
-      Rack::Response.new { |response| response.redirect('/game') }.finish
+    def redirect_to(route)
+      Rack::Response.new { |response| response.redirect(route) }.finish
     end
 
-    def back_home
-      Rack::Response.new { |response| response.redirect('/') }.finish
-    end
-
-    def redirect_to_win_page
-      Rack::Response.new { |response| response.redirect('/win') }.finish
-    end
-
-    def redirect_to_lose_page
-      Rack::Response.new { |response| response.redirect('/lose') }.finish
+    def render_page(template, status = 200)
+      Rack::Response.new(render(template), status).finish
     end
 
     def render(template)

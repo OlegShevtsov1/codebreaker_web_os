@@ -42,7 +42,7 @@ class CurrentGame
 
       decorate(request)
     end
-    back_to_active_game
+    redirect_to(Router::PATH[:game])
   rescue StandardError => e
     @input_error = [].push(request.params['number'] ? e.message : 'Input your guess!')
   end
@@ -53,14 +53,14 @@ class CurrentGame
     @game_over = request.session[:game]
     reset_game_session(request)
     @lose_state = true
-    redirect_to_lose_page
+    redirect_to(Router::PATH[:lose])
   end
 
   def win_the_game(request)
     @game_over = request.session[:game]
     reset_game_session(request)
     @win_state = true
-    redirect_to_win_page
+    redirect_to(Router::PATH[:win])
   end
 
   def validate_input(request)
