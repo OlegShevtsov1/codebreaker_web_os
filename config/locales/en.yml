@@ -1,5 +1,6 @@
 en:
   title: 'Codebreaker Web'
+  guess: 'Input your guess!'
   page_title: 'Codebreaker 2020'
   try_to_guess: "Try to guess %{code_size}-digit number, that consists of numbers in a range from %{start_range} to %{finish_range}."
   hello_player: "Hello, %{name}."

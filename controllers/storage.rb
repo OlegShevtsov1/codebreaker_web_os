@@ -6,14 +6,7 @@ class Storage
 
   def win(current_game)
     @game_over = current_game.game_over
-    if @game_over
-      @storage_wrapper = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
-      @yml_store = @storage_wrapper.new_store
-      save_storage unless @storage_wrapper.storage_exists?
-      synchronize_storage
-      @winners << @game_over
-      save_storage
-    end
+    save if @game_over
     current_game.won? ? win_page : redirect_to(Router::PATH[:home])
   end
 
@@ -28,5 +21,14 @@ class Storage
 
   def synchronize_storage
     @yml_store.transaction(true) { @winners = @yml_store[:winners] }
+  end
+
+  def save
+    @storage_wrapper = CodebreakerOs::StorageWrapper.new(STORAGE_FILE)
+    @yml_store = @storage_wrapper.new_store
+    save_storage unless @storage_wrapper.storage_exists?
+    synchronize_storage
+    @winners << @game_over
+    save_storage
   end
 end

@@ -20,7 +20,7 @@ class CurrentGame
   end
 
   def error
-    @input_error&.delete_at(0)
+    @input_error&.shift
   end
 
   def play(request)
@@ -44,7 +44,7 @@ class CurrentGame
     end
     redirect_to(Router::PATH[:game])
   rescue StandardError => e
-    @input_error = [].push(request.params['number'] ? e.message : 'Input your guess!')
+    @input_error = [].push(request.params['number'] ? e.message : I18n(:guess))
   end
 
   private
