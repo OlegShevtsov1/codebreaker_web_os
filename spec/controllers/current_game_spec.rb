@@ -73,8 +73,9 @@ RSpec.describe CurrentGame do
 
   describe '#play' do
     before do
-      get '/game'
-      get '/take_hint'
+      get Router::PATH[:game]
+      get Router::PATH[:take_hint]
+      last_request.env['rack.session'] = { game: game }
     end
 
     it 'returns game_page' do
@@ -86,53 +87,53 @@ RSpec.describe CurrentGame do
 
     it 'redirects to lose_page when 0 attempts left' do
       game.instance_variable_set(:@attempts_used, 15)
-      get '/take_hint'
-      last_request.env['rack.session'] = { game: game }
       expect(current_game).to receive(:redirect_to).with(Router::PATH[:lose])
       current_game.play(last_request)
     end
   end
 
   describe '#take_hint' do
-    before { get '/take_hint' }
+    before do
+      get Router::PATH[:take_hint]
+      last_request.env['rack.session'] = { game: game }
+    end
 
     it 'returns array' do
-      last_request.env['rack.session'] = { game: game }
       expect(current_game.take_hint(last_request).class).to eq(Array)
     end
   end
 
   describe '#check_input' do
     context 'when input is invalid' do
-      before { get '/submit_answer' }
-
-      it 'returns to active game' do
+      before do
+        get Router::PATH[:submit_answer]
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '11111')
+      end
+
+      it 'returns to active game' do
         expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
         current_game.check_input(last_request)
       end
 
       it 'doesnt change game attempts' do
-        last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, '11111')
         expect { current_game.check_input(last_request) }.not_to change(last_request.session[:game], :attempts_used)
       end
     end
 
     context 'when input is valid' do
-      before { get '/submit_answer' }
-
-      it 'returns to active game' do
+      before do
+        get Router::PATH[:submit_answer]
         last_request.env['rack.session'] = { game: game }
         set_params_number(last_request, '1111')
+      end
+
+      it 'returns to active game' do
         expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
         current_game.check_input(last_request)
       end
 
       it 'sets String to session[:user_code]' do
-        last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, '1111')
         current_game.check_input(last_request)
         expect(last_request.session[:user_code].class).to eq(String)
       end

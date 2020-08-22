@@ -10,7 +10,7 @@ RSpec.describe RegisterGame do
 
   describe '#create_game' do
     context 'when input is valid' do
-      before { post '/game' }
+      before { post Router::PATH[:game] }
 
       it 'creates game instance' do
         last_request.instance_variable_set(:@params, { 'player_name' => 'User', 'level' => 'hell' })
