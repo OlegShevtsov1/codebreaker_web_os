@@ -1,0 +1,24 @@
+{
+  "name": "codebreaker_web_os",
+  "version": "1.0.0",
+  "description": "Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker. The codemaker, which will be played by the application we’re going to write, creates a secret code of four numbers between 1 and 6. User interaction with a Web page. https://docs.google.com/document/d/1Q2u3CAmRs1Gg7zO2rT5IlTP_LdBicfBa7OzC6ZjYwZI/edit",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "bootstrap": "^4.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlegShevtsov1/codebreaker_web_os.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlegShevtsov1/codebreaker_web_os/issues"
+  },
+  "homepage": "https://github.com/OlegShevtsov1/codebreaker_web_os#readme"
+}

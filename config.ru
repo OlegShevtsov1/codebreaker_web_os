@@ -5,7 +5,7 @@ require_relative 'load'
 use Rack::Reloader
 use Rack::Static, urls: ['/assets']
 use Rack::Static, urls: %w[/bootstrap /jquery], root: 'node_modules'
-use Rack::Session::Cookie, key: 'rack.session',
+use Rack::Session::Cookie, key: 'rack.2204',
                            path: '/',
                            expire_after: 2_592_000,
                            secret: 'codebreaker_os_2204',
