@@ -50,15 +50,13 @@ class CurrentGame
   private
 
   def lose_the_game(request)
-    @game_over = request.session[:game]
-    reset_game_session(request)
+    finish(request)
     @lose_state = true
     redirect_to(Router::PATH[:lose])
   end
 
   def win_the_game(request)
-    @game_over = request.session[:game]
-    reset_game_session(request)
+    finish(request)
     @win_state = true
     redirect_to(Router::PATH[:win])
   end
@@ -78,5 +76,10 @@ class CurrentGame
 
   def win?(request)
     request.session[:game].win?(request.params['number'])
+  end
+
+  def finish(request)
+    @game_over = request.session[:game]
+    reset_game_session(request)
   end
 end
