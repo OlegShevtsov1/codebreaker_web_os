@@ -12,7 +12,7 @@
                 %h1.text-white.title
                   = I18n.t(:page_title)
             %p.lead.text-white-70
-              = I18n.t(:rules)
+              = I18n.t(:rules, number_first: CodebreakerOs::Game::SECRET_CODE_RANGE.first, number_last: CodebreakerOs::Game::SECRET_CODE_RANGE.last)
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: Router::PATH[:home], role: "button"}
               = I18n.t(:back_home_button)

@@ -3,7 +3,7 @@
 class CurrentGame
   include Helpers::RouteHelper
 
-  attr_reader :game_over
+  attr_reader :lose_state, :win_state, :game_over
 
   def reset_game_state
     @lose_state = false
@@ -12,11 +12,11 @@ class CurrentGame
   end
 
   def won?
-    @win_state
+    win_state
   end
 
   def lost?
-    @lose_state
+    lose_state
   end
 
   def error
@@ -44,7 +44,8 @@ class CurrentGame
     end
     redirect_to(Router::PATH[:game])
   rescue StandardError => e
-    @input_error = [].push(request.params['number'] ? e.message : I18n(:guess))
+    errors = []
+    @input_error = errors.push(request.params['number'] ? e.message : I18n(:guess))
   end
 
   private

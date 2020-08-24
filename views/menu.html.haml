@@ -24,9 +24,9 @@
                 %label.lead.label{for: "level"}= I18n.t(:level_input)
                 %select.custom-select{name: "level", required: ""}
                   %option{value: ""}= I18n.t(:level_message_text)
-                  %option{value: "easy"}= CodebreakerOs::Difficulty::LEVELS.keys[0].capitalize
-                  %option{value: "medium"}= CodebreakerOs::Difficulty::LEVELS.keys[1].capitalize
-                  %option{value: "hell"}= CodebreakerOs::Difficulty::LEVELS.keys[2].capitalize
+                  %option{value: "easy"}= Helpers::DecoratorHelper.easy_level
+                  %option{value: "medium"}= Helpers::DecoratorHelper.medium_level
+                  %option{value: "hell"}= Helpers::DecoratorHelper.hell_level
               %hr.mb-4/
               %button.btn.btn-primary.btn-lg{type: "submit"}
                 = I18n.t(:start_the_game_button)
