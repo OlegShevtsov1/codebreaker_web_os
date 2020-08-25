@@ -2,6 +2,8 @@
 
 class CurrentGame
   include Helpers::RouteHelper
+  MINUS = '-'
+  PLUS = '+'
 
   attr_reader :lose_state, :win_state, :game_over
 
