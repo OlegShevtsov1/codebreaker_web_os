@@ -4,7 +4,7 @@ RSpec.describe Statistic do
   let(:statistic) { described_class.new }
 
   describe '#show_stats' do
-    before { stub_const('Statistic::STORAGE_FILE', 'spec/fixtures/test_statistics.yml') }
+    before { stub_const('Storage::STORAGE_FILE', 'spec/fixtures/test_statistics.yml') }
 
     it 'returns statistics page' do
       expect(statistic).to receive(:statistics_page)

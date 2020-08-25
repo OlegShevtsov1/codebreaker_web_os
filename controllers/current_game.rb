@@ -55,15 +55,18 @@ class CurrentGame
   private
 
   def lose_the_game(request)
-    finish(request)
     @lose_state = true
-    redirect_to(Router::PATH[:lose])
+    finish_game(request, :lose)
   end
 
   def win_the_game(request)
-    finish(request)
     @win_state = true
-    redirect_to(Router::PATH[:win])
+    finish_game(request, :win)
+  end
+
+  def finish_game(request, path)
+    finish(request)
+    redirect_to(Router::PATH[path])
   end
 
   def validate_input(request)

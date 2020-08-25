@@ -47,3 +47,4 @@ en:
   secret_code: 'The code was'
   win_message: "Congratulations, %{name}! You won the game!"
   lose_message: "Oops, %{name}! You lose the game!"
+  no_result: 'There are no winners yet! Be the first!'
