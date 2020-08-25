@@ -18,6 +18,7 @@ RSpec.describe CurrentGame do
 
   let(:current_game) { described_class.new }
   let(:game) { CodebreakerOs::Game.new(CodebreakerOs::Player.new('User'), CodebreakerOs::Difficulty.new('easy')) }
+  let(:decorator) { Helpers::DecoratorHelper.new }
 
   describe '#reset_game_state' do
     it 'sets lose_state to false' do

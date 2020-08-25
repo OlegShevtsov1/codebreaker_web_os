@@ -4,6 +4,10 @@ class Storage
   STORAGE_FILE = 'statistics.yml'
   include Helpers::RouteHelper
 
+  def initialize
+    @decorator = Helpers::DecoratorHelper.new
+  end
+
   def win(current_game)
     @game_over = current_game.game_over
     save if @game_over

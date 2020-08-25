@@ -23,11 +23,13 @@
               .col.text-center.button
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   = I18n.t(:attempts_label)
-                  %span.badge.badge-light= Helpers::DecoratorHelper.attempts_left(@game)
+                  %span.badge.badge-light
+                    -# = @decorator.attempts_left(@game)
               .col.button
                 %button.btn.btn-primary.float-right{disabled: "disabled", type: "button"}
                   = I18n.t(:hints_label)
-                  %span.badge.badge-light= Helpers::DecoratorHelper.hints_left(@game)
+                  %span.badge.badge-light
+                    -# = @decorator.hints_left(@game)
             %hr.mb-4/
             %label.lead.label= error
             %form{action: Router::PATH[:submit_answer], method: "post"}

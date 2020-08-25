@@ -5,6 +5,10 @@ class CurrentGame
 
   attr_reader :lose_state, :win_state, :game_over
 
+  def initialize
+    @decorator = Helpers::DecoratorHelper.new
+  end
+
   def reset_game_state
     @lose_state = false
     @win_state = false

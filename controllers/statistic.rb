@@ -4,6 +4,10 @@ class Statistic
   include Helpers::RouteHelper
   STORAGE_FILE = 'statistics.yml'
 
+  def initialize
+    @decorator = Helpers::DecoratorHelper.new
+  end
+
   NO_RESULTS = 'There are no winners yet! Be the first!'
 
   def show_stats
