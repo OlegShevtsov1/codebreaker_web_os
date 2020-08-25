@@ -17,17 +17,5 @@ module Helpers
     def self.attempts_total_left(game)
       game.attempts_total - game.attempts_used
     end
-
-    def self.easy_level
-      CodebreakerOs::Difficulty::LEVELS.keys[0].capitalize
-    end
-
-    def self.medium_level
-      CodebreakerOs::Difficulty::LEVELS.keys[1].capitalize
-    end
-
-    def self.hell_level
-      CodebreakerOs::Difficulty::LEVELS.keys[2].capitalize
-    end
   end
 end
