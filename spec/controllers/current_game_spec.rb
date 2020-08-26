@@ -116,11 +116,14 @@ RSpec.describe CurrentGame do
   end
 
   describe '#check_input' do
+    let(:invalid_code_input) { '11111' }
+    let(:valid_code_input) { '1111' }
+
     context 'when input is invalid' do
       before do
         get Router::PATH[:submit_answer]
         last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, '11111')
+        set_params_number(last_request, invalid_code_input)
       end
 
       it 'returns to active game' do
@@ -137,7 +140,7 @@ RSpec.describe CurrentGame do
       before do
         get Router::PATH[:submit_answer]
         last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, '1111')
+        set_params_number(last_request, valid_code_input)
       end
 
       it 'returns to active game' do
