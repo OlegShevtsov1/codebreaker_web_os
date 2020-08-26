@@ -92,7 +92,6 @@ RSpec.describe CurrentGame do
     end
 
     it 'returns game_page' do
-      last_request.env['rack.session'] = { game: game }
       @game = game
       @hints = []
       expect(current_game.play(last_request)[1]).to eq(game_page[1])
