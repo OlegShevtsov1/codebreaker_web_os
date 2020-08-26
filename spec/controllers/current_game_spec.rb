@@ -140,24 +140,29 @@ RSpec.describe CurrentGame do
       before do
         get Router::PATH[:submit_answer]
         last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, valid_code_input)
       end
 
-      it 'returns to active game' do
-        expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
-        current_game.check_input(last_request)
+      context 'when no win' do
+        before { set_params_number(last_request, valid_code_input) }
+
+        it 'returns to active game' do
+          expect(current_game).to receive(:redirect_to).with(Router::PATH[:game])
+          current_game.check_input(last_request)
+        end
+
+        it 'sets String to session[:user_code]' do
+          current_game.check_input(last_request)
+          expect(last_request.session[:user_code].class).to eq(String)
+        end
       end
 
-      it 'sets String to session[:user_code]' do
-        current_game.check_input(last_request)
-        expect(last_request.session[:user_code].class).to eq(String)
-      end
+      context 'when win' do
+        before { set_params_number(last_request, game.secret_number.to_s) }
 
-      it 'wins the game when input is equal to secret_code' do
-        last_request.env['rack.session'] = { game: game }
-        set_params_number(last_request, game.secret_number.to_s)
-        expect(current_game).to receive(:redirect_to).with(Router::PATH[:win])
-        current_game.check_input(last_request)
+        it 'wins the game when input is equal to secret_code' do
+          expect(current_game).to receive(:redirect_to).with(Router::PATH[:win])
+          current_game.check_input(last_request)
+        end
       end
     end
   end

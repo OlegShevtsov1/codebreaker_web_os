@@ -11,3 +11,5 @@ RSpec/MessageSpies:
   EnforcedStyle: receive
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
+RSpec/NestedGroups:
+  Max: 5
