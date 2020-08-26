@@ -26,7 +26,7 @@ class Router
   end
 
   def error
-    @registrate_error&.delete_at(0)
+    @registrate_error&.shift
   end
 
   private
