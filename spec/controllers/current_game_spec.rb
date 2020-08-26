@@ -89,11 +89,11 @@ RSpec.describe CurrentGame do
       get Router::PATH[:game]
       get Router::PATH[:take_hint]
       last_request.env['rack.session'] = { game: game }
+      @game = game
+      @hints = []
     end
 
     it 'returns game_page' do
-      @game = game
-      @hints = []
       expect(current_game.play(last_request)[1]).to eq(game_page[1])
     end
 
