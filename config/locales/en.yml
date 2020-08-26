@@ -48,3 +48,4 @@ en:
   win_message: "Congratulations, %{name}! You won the game!"
   lose_message: "Oops, %{name}! You lose the game!"
   no_result: 'There are no winners yet! Be the first!'
+  name_not_valid: "Name %{player_name} isn't valid"
