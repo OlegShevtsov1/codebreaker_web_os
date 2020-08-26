@@ -41,7 +41,7 @@ module Helpers
     end
 
     def render(template)
-      path = File.expand_path("../../views/#{template}", __FILE__)
+      path = File.expand_path("#{Router::VIEWS}#{template}", __FILE__)
       Haml::Engine.new(File.read(path)).render(binding)
     end
   end

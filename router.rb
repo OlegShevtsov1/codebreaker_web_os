@@ -11,6 +11,8 @@ class Router
            lose: '/lose',
            win: '/win' }.freeze
 
+  VIEWS = '../../views/'
+
   def initialize
     @register_game = RegisterGame.new
     @current_game = CurrentGame.new
