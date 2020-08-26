@@ -49,14 +49,20 @@ RSpec.describe CurrentGame do
   end
 
   describe '#lost?' do
-    it 'returns true when game is lost' do
-      current_game.instance_variable_set(:@lose_state, true)
-      expect(current_game.lost?).to be true
+    context 'when game is lost' do
+      before { current_game.instance_variable_set(:@lose_state, true) }
+
+      it 'returns true' do
+        expect(current_game.lost?).to be true
+      end
     end
 
-    it 'returns false when game is not lost' do
-      current_game.instance_variable_set(:@lose_state, false)
-      expect(current_game.lost?).to be false
+    context 'when game is not lost' do
+      before { current_game.instance_variable_set(:@lose_state, false) }
+
+      it 'returns false' do
+        expect(current_game.lost?).to be false
+      end
     end
   end
 
