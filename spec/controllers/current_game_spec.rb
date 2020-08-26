@@ -67,13 +67,20 @@ RSpec.describe CurrentGame do
   end
 
   describe '#error' do
-    it 'returns nil when no errors' do
-      expect(current_game.error).to be nil
+    context 'without errors' do
+      it 'returns nil when no errors' do
+        expect(current_game.error).to be nil
+      end
     end
 
-    it 'returns string when error presents' do
-      current_game.instance_variable_set(:@input_error, ['Your name is too short'])
-      expect(current_game.error.class).to eq(String)
+    context 'with errors' do
+      let(:error_message) { ['Your name is too short'] }
+
+      before { current_game.instance_variable_set(:@input_error, error_message) }
+
+      it 'returns string when error presents' do
+        expect(current_game.error.class).to eq(String)
+      end
     end
   end
 
