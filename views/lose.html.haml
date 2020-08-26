@@ -20,11 +20,11 @@
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   = I18n.t(:attempts_left)
                   %span.badge.badge-light
-                    = @decorator.attempts_left(@game_over)
+                    = decorator.attempts_left(@game_over)
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   = I18n.t(:hints_left)
                   %span.badge.badge-light
-                    = @decorator.hints_left(@game_over)
+                    = decorator.hints_left(@game_over)
             %hr.mb-4/
             .row
               .text-center

@@ -32,10 +32,10 @@
                         %td= stat.player.name
                         %td= stat.difficulty[:name]
                         %td
-                          = @decorator.attempts_total_left(stat)
+                          = decorator.attempts_total_left(stat)
                           \/#{stat.attempts_total}
                         %td
-                          = @decorator.hints_total_left(stat)
+                          = decorator.hints_total_left(stat)
                           \/#{stat.hints_total}
                         %td= stat.player.created_at.strftime('%d-%m-%Y')
             %hr.mb-4/

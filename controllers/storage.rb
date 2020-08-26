@@ -4,6 +4,8 @@ class Storage
   STORAGE_FILE = 'statistics.yml'
   include Helpers::RouteHelper
 
+  attr_reader :decorator
+
   def initialize
     @decorator = Helpers::DecoratorHelper.new
   end

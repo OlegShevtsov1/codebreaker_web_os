@@ -5,7 +5,7 @@ class CurrentGame
   MINUS = '-'
   PLUS = '+'
 
-  attr_reader :lose_state, :win_state, :game_over
+  attr_reader :lose_state, :win_state, :game_over, :decorator
 
   def initialize
     @decorator = Helpers::DecoratorHelper.new
