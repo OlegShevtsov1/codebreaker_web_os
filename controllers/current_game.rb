@@ -43,11 +43,9 @@ class CurrentGame
 
   def check_input(request)
     guess = CodebreakerOs::Guess.new(request.params['number'])
-    if guess.valid?
-      return win_the_game(request) if win?(request)
+    return win_the_game(request) if win?(request) && guess.valid?
 
-      decorate(request)
-    end
+    decorate(request) if guess.valid?
     redirect_to(Router::PATH[:game])
   rescue StandardError => e
     errors = []
