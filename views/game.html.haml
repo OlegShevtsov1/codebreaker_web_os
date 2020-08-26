@@ -19,7 +19,7 @@
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   = I18n.t(:level_label)
                   %span.badge.badge-light
-                    = @game.difficulty[:name].to_s.capitalize
+                    = decorator.difficulty_name(@game)
               .col.text-center.button
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
                   = I18n.t(:attempts_label)

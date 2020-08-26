@@ -17,5 +17,9 @@ module Helpers
     def attempts_total_left(game)
       game.attempts_total - game.attempts_used
     end
+
+    def difficulty_name(game)
+      game.difficulty[:name].to_s.capitalize
+    end
   end
 end
