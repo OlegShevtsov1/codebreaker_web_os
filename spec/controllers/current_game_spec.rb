@@ -21,18 +21,17 @@ RSpec.describe CurrentGame do
   let(:decorator) { Helpers::DecoratorHelper.new }
 
   describe '#reset_game_state' do
+    before { current_game.reset_game_state }
+
     it 'sets lose_state to false' do
-      current_game.reset_game_state
       expect(current_game.instance_variable_get(:@lose_state)).to be false
     end
 
     it 'sets win_state to false' do
-      current_game.reset_game_state
       expect(current_game.instance_variable_get(:@win_state)).to be false
     end
 
     it 'sets game_over to nil' do
-      current_game.reset_game_state
       expect(current_game.instance_variable_get(:@game_over)).to be nil
     end
   end
