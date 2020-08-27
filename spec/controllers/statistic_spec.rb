@@ -7,7 +7,7 @@ RSpec.describe Statistic do
     before { stub_const('Storage::STORAGE_FILE', 'spec/fixtures/test_statistics.yml') }
 
     it 'returns statistics page' do
-      expect(statistic).to receive(:statistics_page)
+      expect(statistic).to receive(:render_page)
       statistic.show_stats
     end
 

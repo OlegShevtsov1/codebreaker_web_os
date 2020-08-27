@@ -13,12 +13,12 @@ class Storage
   def win(current_game)
     @game_over = current_game.game_over
     save if @game_over
-    current_game.won? ? win_page : redirect_to(Router::PATH[:home])
+    current_game.won? ? render_page('win.html.haml') : redirect_to(Router::PATH[:home])
   end
 
   def lose(current_game)
     @game_over = current_game.game_over
-    current_game.lost? ? lose_page : redirect_to(Router::PATH[:home])
+    current_game.lost? ? render_page('lose.html.haml') : redirect_to(Router::PATH[:home])
   end
 
   def save_storage

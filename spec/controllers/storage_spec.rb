@@ -15,7 +15,7 @@ RSpec.describe Storage do
   describe '#lose' do
     it 'redirects to lose page when game is lost' do
       allow(current_game).to receive(:lost?).and_return(true)
-      expect(finisher).to receive(:lose_page)
+      expect(finisher).to receive(:render_page)
       finisher.lose(current_game)
     end
 

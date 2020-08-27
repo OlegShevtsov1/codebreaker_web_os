@@ -13,6 +13,6 @@ class Statistic
     winners = YAML.load_file(Storage::STORAGE_FILE)[:winners]
     @stats = CodebreakerOs::Statistic.sorted_winners(winners)
 
-    statistics_page
+    render_page('statistics.html.haml')
   end
 end

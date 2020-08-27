@@ -33,7 +33,7 @@ class CurrentGame
     @game = request.session[:game]
     @user_code = request.session[:user_code]
     @hints = request.session[:hints] || []
-    @game.attempts_available? ? game_page : lose_the_game(request)
+    @game.attempts_available? ? render_page('game.html.haml') : lose_the_game(request)
   end
 
   def take_hint(request)

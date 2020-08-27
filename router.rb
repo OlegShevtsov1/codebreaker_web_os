@@ -22,7 +22,7 @@ class Router
 
   def call(env)
     @request = Rack::Request.new(env)
-    PATH.value?(@request.path) ? method(PATH.key(@request.path)).call : wrong_path
+    PATH.value?(@request.path) ? method(PATH.key(@request.path)).call : render_page('not_found.html.haml', 404)
   end
 
   def error
@@ -34,7 +34,7 @@ class Router
   def rules
     return redirect_to(PATH[:game]) if active_game?
 
-    rules_page
+    render_page('rules.html.haml')
   end
 
   def home
@@ -42,7 +42,7 @@ class Router
     return redirect_to(PATH[:game]) if active_game?
 
     @current_game.reset_game_state
-    home_page
+    render_page('menu.html.haml')
   end
 
   def statistics

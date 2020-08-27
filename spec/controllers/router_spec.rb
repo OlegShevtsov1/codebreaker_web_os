@@ -21,7 +21,7 @@ RSpec.describe Router do
 
     context "when #{Router::PATH[:home]}" do
       it 'renders home page' do
-        expect(last_response.header).to eq(home_page[1])
+        expect(last_response.header).to eq(render_page('menu.html.haml')[1])
       end
 
       it 'returns ok status' do
@@ -33,7 +33,7 @@ RSpec.describe Router do
       before { get Router::PATH[:rules] }
 
       it 'renders rules page' do
-        expect(last_response.header).to eq(rules_page[1])
+        expect(last_response.header).to eq(render_page('rules.html.haml')[1])
       end
 
       it 'returns ok status' do
