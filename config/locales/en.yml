@@ -1,0 +1,51 @@
+en:
+  title: 'Codebreaker Web'
+  guess: 'Input your guess!'
+  page_title: 'Codebreaker 2020'
+  try_to_guess: "Try to guess %{code_size}-digit number, that consists of numbers in a range from %{start_range} to %{finish_range}."
+  hello_player: "Hello, %{name}."
+  player_name_input: "Player's name:"
+  level_input: 'Game level:'
+  level_message_text: 'Choose game level...'
+  start_the_game_button: 'Start the game!'
+  rules_button: 'Rules'
+  statistics_button: 'Statistics'
+  your_name_placeholder: 'Your name'
+  not_found_message: 'NOT FOUND'
+  back_home_button: 'Back Home'
+  back_to_the_game_button: 'Back to the GAME'
+  level_label: 'Level:'
+  hints_label: 'Hints:'
+  attempts_label: 'Attempts:'
+  submit_button: 'Sumbit'
+  show_hint_button: 'Show hint!'
+  number_placeholder: '1234'
+  alt_lose: 'You lose the game!'
+  alt_win: 'You won the game!'
+  stat_number: '#'
+  stat_name: 'Name'
+  stat_level: 'Level'
+  stat_attempts_left: 'Attempts Left'
+  stat_hints_left: 'Hints Left'
+  stat_date: 'Date'
+  rules: 'Codebreaker is a logic game in which a code-breaker tries to break a secret code created by a code-maker. The codemaker, which will be played by the application we’re going to write, creates a secret code of four numbers between %{number_first} and %{number_last}.
+          The codebreaker gets some number of chances to break the code (depends on chosen difficulty). In each turn, the codebreaker makes a guess of 4 numbers. The codemaker then marks the guess with up to 4 signs - + or - or empty spaces.
+          A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers in the secret code and in the same position. For example:
+          Secret number - 1234
+          Input number - 6264
+          Number of pluses - 2 (second and fourth position)
+          A - indicates a number match: one of the numbers in the guess is the same as one of the numbers in the secret code but in a different position. For example:
+          Secret number - 1234
+          Input number - 6462
+          Number of minuses - 2 (second and fourth position)
+          An empty space indicates that there is not a current digit in a secret number.
+          If codebreaker inputs the exact number as a secret number - codebreaker wins the game. If all attempts are spent - codebreaker loses.
+          Codebreaker also has some number of hints(depends on chosen difficulty). If a user takes a hint - he receives back a separate digit of the secret code.'
+  top_of_players: 'Top of Players:'
+  attempts_left: 'Attempts Left:'
+  hints_left: 'Hints Left:'
+  secret_code: 'The code was'
+  win_message: "Congratulations, %{name}! You won the game!"
+  lose_message: "Oops, %{name}! You lose the game!"
+  no_result: 'There are no winners yet! Be the first!'
+  name_not_valid: "Name %{player_name} isn't valid"

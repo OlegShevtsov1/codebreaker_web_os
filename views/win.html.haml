@@ -1,0 +1,39 @@
+!!!
+%html.mdl-js{lang: "en"}
+  %head
+    = render('_head.html.haml')
+  %body
+    %section#introduction
+      .container
+        .row.fill-viewport.align-items-center.justify-content-center
+          .col-12.col-md-6
+            .row
+              .col-md-auto
+                %h1.text-white.title.inline-block
+                  = I18n.t(:page_title)
+            .row
+              .col.button
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  = I18n.t(:level_label)
+                  %span.badge.badge-light
+                    = decorator.difficulty_name(@game_over)
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  = I18n.t(:attempts_left)
+                  %span.badge.badge-light
+                    = decorator.attempts_left(@game_over)
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  = I18n.t(:hints_left)
+                  %span.badge.badge-light
+                    = decorator.hints_left(@game_over)
+            %hr.mb-4/
+            .row
+              .text-center
+                .text-center
+                  %h3.text-white
+                    = I18n.t(:win_message, name: @game_over.player.name.upcase)
+                %img.img-fluid{alt: I18n.t(:alt_win), src: "assets/images/won.gif"}/
+            %hr.mb-4/
+            %a.btn.btn-primary.btn-lg{href: Router::PATH[:home], role: "button"}
+              = I18n.t(:back_home_button)
+            %a.btn.btn-success.btn-lg.float-right{href: Router::PATH[:statistics], role: "button"}
+              = I18n.t(:statistics_button)

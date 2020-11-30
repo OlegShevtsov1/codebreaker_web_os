@@ -1,0 +1,43 @@
+!!!
+%html.mdl-js{lang: "en"}
+  %head
+    = render('_head.html.haml')
+  %body
+    %section#introduction
+      .container
+        .row.fill-viewport.align-items-center.justify-content-center
+          .col-12.col-md-6
+            .row
+              .col-md-auto
+                %h1.text-white.title
+                  = I18n.t(:page_title)
+            %p.lead.text-white-70
+              = I18n.t(:top_of_players)
+            %hr.mb-4/
+            .table-responsive-md.scores
+              %table.table.table-striped.table.table-sm
+                %thead
+                %tr
+                  %th{scope: "col"}= I18n.t(:stat_number)
+                  %th{scope: "col"}= I18n.t(:stat_name)
+                  %th{scope: "col"}= I18n.t(:stat_level)
+                  %th{scope: "col"}= I18n.t(:stat_attempts_left)
+                  %th{scope: "col"}= I18n.t(:stat_hints_left)
+                  %th{scope: "col"}= I18n.t(:stat_date)
+                %tbody
+                  - if @stats
+                    - @stats.each_with_index do |stat, index|
+                      %tr
+                        %th{scope: "row"}= index + 1
+                        %td= stat.player.name
+                        %td= stat.difficulty[:name]
+                        %td
+                          = decorator.attempts_total_left(stat)
+                          \/#{stat.attempts_total}
+                        %td
+                          = decorator.hints_total_left(stat)
+                          \/#{stat.hints_total}
+                        %td= stat.player.created_at.strftime('%d-%m-%Y')
+            %hr.mb-4/
+            %a.btn.btn-primary.btn-lg{href: Router::PATH[:home], role: "button"}
+              = I18n.t(:back_home_button)
