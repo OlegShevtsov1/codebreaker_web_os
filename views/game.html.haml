@@ -39,10 +39,10 @@
                 #guess_marker
                   - if @user_code
                     - @user_code.split('').each do |item|
-                      - if item == Game::PLUS
+                      - if item == CurrentGame::PLUS
                         %button.btn.btn-success.marks{disabled: "disabled", type: "button"}
                           = item
-                      - if item == Game::MINUS
+                      - if item == CurrentGame::MINUS
                         %button.btn.btn-primary.marks{disabled: "disabled", type: "button"}
                           = item
                     - ( 4 - @user_code.length).times do

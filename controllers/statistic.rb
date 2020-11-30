@@ -10,8 +10,10 @@ class Statistic
   end
 
   def show_stats
-    winners = YAML.load_file(Storage::STORAGE_FILE)[:winners]
-    @stats = CodebreakerOs::Statistic.sorted_winners(winners)
+    if FileTest.file?(Storage::STORAGE_FILE)
+      winners = YAML.load_file(Storage::STORAGE_FILE)[:winners]
+      @stats = CodebreakerOs::Statistic.sorted_winners(winners)
+    end
 
     render_page('statistics.html.haml')
   end
